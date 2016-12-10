@@ -4,9 +4,19 @@ import { Footer,FooterTab, Header, Title, Button, Icon,
           Text, Badge, Card, CardItem, Spinner } from 'native-base';
 
 import {
-  AsyncStorage,
-  StatusBar,View,ToastAndroid
+  AsyncStorage,Modal,
+  StatusBar,View,ToastAndroid,Dimensions,Image
 } from 'react-native';
+
+import ImageViewer from 'react-native-image-zoom-viewer';
+
+const images = [{
+    url: 'http://scimg.jb51.net/allimg/160815/103-160Q509544OC.jpg'
+}, {
+    url: 'http://img.sc115.com/uploads1/sc/jpgs/1508/apic22412_sc115.com.jpg'
+}, {
+    url: 'http://v1.qzone.cc/avatar/201407/07/00/24/53b9782c444ca987.jpg!200x200.jpg'
+}]
 
 export default class TripDetail extends Component {
 
@@ -43,6 +53,15 @@ export default class TripDetail extends Component {
                 </ListItem>
               </List>
             </View>
+             <Modal visible={false} transparent={true} onRequestClose={() => {alert("Modal has been closed.")}}>
+                <Header backgroundColor="#212121">
+                  <Button transparent onPress={() => {this.props.navigator.pop()}}>
+                      <Icon name='ios-arrow-back' />
+                  </Button>
+                  <Title>Taj Mahal</Title>
+              </Header>
+                <ImageViewer imageUrls={images}/>
+            </Modal>
           </Content>   
          </Container>
     );
